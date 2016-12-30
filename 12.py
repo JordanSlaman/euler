@@ -19,7 +19,7 @@ What is the value of the first triangle number to have over five hundred divisor
 import itertools
 
 def gen_triangle_number():
-	for n in itertools.count(1):
+	for n in itertools.count(2):
 		yield sum(range(n))
 
 def get_divisors(num):
@@ -31,13 +31,8 @@ def get_divisors(num):
 
 triangle = gen_triangle_number()
 
-t_map = []
-
 for x in itertools.count(1):
-	if x == 10:
-		break
 	t = triangle.next()
-	t_map.append((t, tuple(get_divisors(t))))
-
-for row in t_map:
-	print row
+	if len(get_divisors(t)) > 500:
+		print t, get_divisors(t)
+		break
